@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static  %}
+
+{% block titulo %}
+
+    {{super.block}}
+
+{% endblock titulo %}
+
+{% block corpo %}
+        <div class="row ">
+            <div class="col">
+                <label>Aluno: </label> Érico Vinícius Araújo Costa
+            </div>
+            <div class="col">
+                <label>Unidade: </label> Florentino Neto (Parnaíba)
+            </div>
+        </div>
+        <div class="row container-sm">
+            <img class="d-flex float-start" src="{% static 'img/senac.png' %}" alt="logo do Senac">
+        </div>
+
+{% endblock corpo %}

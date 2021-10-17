@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block titulo %}
+
+    {{ block.super }} | Tarefa
+
+{% endblock titulo %}
+
+{% block corpo %}
+
+    <h1>Tarefas</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Título</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Categoria</th>
+                <th scope="col">Status</th>
+                <th scope="col">Prioridade</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for tarefa in tarefas %}
+                <tr>
+                    <th scope="row">{{ tarefa.id }}</th>
+                    <td>{{ tarefa.titulo }}</td>
+                    <td>{{ tarefa.descricao }}</td>
+                    <td>{{ tarefa.categoria }}</td>
+                    <td>{{ tarefa.get_status_display }}</td>
+                    <td>{{ tarefa.get_prioridade_display }}</td>
+                    <td>
+                        <a class="btn btn-info btn-sm" href="{% url 'tarefas:editar_tarefa' tarefa.id %}">Editar</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'tarefas:apagar_tarefa' tarefa.id %}">Apagar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{% url 'tarefas:adicionar_tarefa' %}" class="btn btn-primary">Adicionar Nova Tarefa</a>
+
+{% endblock corpo %}

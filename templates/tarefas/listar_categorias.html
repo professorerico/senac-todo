@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+
+{% block titulo %}
+
+    {{ block.super}} | Categoria
+
+{% endblock titulo %}
+
+{% block corpo %}
+
+    <h1>Categorias</h1>
+
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nome</th>
+                <th scope="col">Descrição</th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for categoria in categorias %}
+                <tr>
+                    <th scope="row">{{ categoria.id }}</th>
+                    <td>{{ categoria.nome }}</td>
+                    <td>{{ categoria.descricao }}</td>
+                    <td>
+                        <a class="btn btn-info btn-sm" href="{% url 'tarefas:editar_categoria' categoria.id %}">Editar</a>
+                        <a class="btn btn-danger btn-sm" href="{% url 'tarefas:apagar_categoria' categoria.id %}">Apagar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<a class="btn btn-primary" href="{% url 'tarefas:adicionar_categoria' %}"  >
+   Adicionar Nova Categoria
+</a>
+
+{% endblock corpo %}
